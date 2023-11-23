@@ -14,7 +14,7 @@ public class MainViewModel : ViewModelBase
     {
         Explorer = new Explorer();
         UpCommand = ReactiveCommand.Create(() => Explorer.Up());
-        OpenCommand = ReactiveCommand.Create<ExplorerEntry>((entry) =>  Explorer.ChangeDirectory(entry.Name));
+        OpenCommand = ReactiveCommand.Create<ExplorerEntry>((entry) => Explorer.ChangeDirectory(entry.Name));
     }
 
 }

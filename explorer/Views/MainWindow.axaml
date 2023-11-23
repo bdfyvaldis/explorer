@@ -29,7 +29,7 @@
 						<Grid.ContextMenu>
 							<ContextMenu>
 								<MenuItem Header="Open" Command="{Binding $parent[Window].DataContext.OpenCommand}" CommandParameter="{Binding}"/>
-								<MenuItem Header="Properties"/>
+								<MenuItem Header="Properties" Click="PropHandler"/>
 							</ContextMenu>
 						</Grid.ContextMenu>
 					</Grid>

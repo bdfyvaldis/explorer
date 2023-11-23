@@ -3,6 +3,7 @@ using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
+using explorer.Models;
 using explorer.ViewModels;
 using System.Diagnostics;
 using System.Linq;
@@ -24,6 +25,15 @@ public partial class MainWindow : Window
         Grid grid = rect.Parent as Grid;
         (this.DataContext as MainViewModel).Explorer.ChangeDirectory(grid.GetVisualChildren().OfType<TextBlock>().First().Text);
         //Debug.WriteLine(grid.GetVisualChildren().OfType<TextBlock>().First().Text);
+    }
+
+    private void PropHandler(object sender, RoutedEventArgs e)
+    {
+        var lb = this.GetVisualDescendants().OfType<ListBox>().First() as ListBox;
+        var entryname = (lb.SelectedItem as ExplorerEntry).Name;
+            //Debug.WriteLine(entryname);
+
+        (new PropertiesWindow((this.DataContext as MainViewModel).Explorer.CurrentDirName + entryname)).Show();
     }
 
 }

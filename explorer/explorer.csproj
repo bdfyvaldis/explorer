@@ -22,4 +22,9 @@
   <ItemGroup>
     <Folder Include="Assets\icons\" />
   </ItemGroup>
+	<ItemGroup>
+    <Page Include="Views\PropertiesWindow.axaml">
+        <SubType>Designer</SubType>
+    </Page>
+</ItemGroup>
 </Project>
