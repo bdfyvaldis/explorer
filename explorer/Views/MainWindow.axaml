@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:explorer.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:explorer.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="explorer.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+		xmlns:models="using:explorer.Models"
+        Title="explorer">
+	<Window.Resources>
+		<vm:EntryBitmabValueConverter x:Key="EntryBitmabValue"/>
+	</Window.Resources>
+	<Grid RowDefinitions="70,*">
+		<StackPanel Orientation="Horizontal">
+			<Button Name="Up" Command="{Binding UpCommand}">
+				<Image Height="40" Width="40" Source="/Assets/icons/Up.png"></Image>
+			</Button>
+		</StackPanel>
+		<ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Explorer.Entries}">
+			<ListBox.ItemTemplate>
+				<DataTemplate DataType="{x:Type models:ExplorerEntry}">
+					<Grid ColumnDefinitions="40,*">
+						<Image Grid.Column="0" Height="40" Width="40" Source="{Binding EntryType, Converter={StaticResource EntryBitmabValue}}"></Image>
+						<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding Name}"></TextBlock>
+						<Rectangle Grid.ColumnSpan="2" Fill="Transparent" ZIndex="1" DoubleTapped="RectDoubleTapped">
+						</Rectangle>
+						<Grid.ContextMenu>
+							<ContextMenu>
+								<MenuItem Header="Open" Command="{Binding $parent[Window].DataContext.OpenCommand}" CommandParameter="{Binding}"/>
+								<MenuItem Header="Properties"/>
+							</ContextMenu>
+						</Grid.ContextMenu>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</Window>
+
+<!--
+
+-->
