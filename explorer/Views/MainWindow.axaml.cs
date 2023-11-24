@@ -27,7 +27,7 @@ public partial class MainWindow : Window
         //Debug.WriteLine(grid.GetVisualChildren().OfType<TextBlock>().First().Text);
     }
 
-    private void PropHandler(object sender, RoutedEventArgs e)
+    private void PropertiesClick(object sender, RoutedEventArgs e)
     {
         var lb = this.GetVisualDescendants().OfType<ListBox>().First() as ListBox;
         var entryname = (lb.SelectedItem as ExplorerEntry).Name;

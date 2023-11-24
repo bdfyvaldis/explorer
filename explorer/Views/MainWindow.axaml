@@ -12,13 +12,23 @@
 	<Window.Resources>
 		<vm:EntryBitmabValueConverter x:Key="EntryBitmabValue"/>
 	</Window.Resources>
-	<Grid RowDefinitions="70,*">
+	<Grid RowDefinitions="70,30,*">
 		<StackPanel Orientation="Horizontal">
 			<Button Name="Up" Command="{Binding UpCommand}">
 				<Image Height="40" Width="40" Source="/Assets/icons/Up.png"></Image>
 			</Button>
 		</StackPanel>
-		<ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Explorer.Entries}">
+		<Grid Grid.Row="1" ColumnDefinitions="30,*,40">
+			<Button Grid.Column="0" VerticalAlignment="Stretch" Width="30" Command="{Binding HomeCommand}">
+				<Image Height="40" Width="40" Source="/Assets/icons/Home.png"></Image>
+			</Button>
+			<TextBox Grid.Column="1" HorizontalAlignment="Stretch">
+			</TextBox>
+			<Button Grid.Column="2" VerticalAlignment="Stretch"
+					HorizontalAlignment="Stretch"></Button>
+		</Grid>
+		<Grid Grid.Row="2">
+		<ListBox Grid.Column="0"  ItemsSource="{Binding Explorer.Entries}">
 			<ListBox.ItemTemplate>
 				<DataTemplate DataType="{x:Type models:ExplorerEntry}">
 					<Grid ColumnDefinitions="40,*">
@@ -29,16 +39,14 @@
 						<Grid.ContextMenu>
 							<ContextMenu>
 								<MenuItem Header="Open" Command="{Binding $parent[Window].DataContext.OpenCommand}" CommandParameter="{Binding}"/>
-								<MenuItem Header="Properties" Click="PropHandler"/>
+								<MenuItem Header="Properties" Click="PropertiesClick"/>
 							</ContextMenu>
 						</Grid.ContextMenu>
 					</Grid>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
+		</Grid>
 	</Grid>
 </Window>
 
-<!--
-
--->

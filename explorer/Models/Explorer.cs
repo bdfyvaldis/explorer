@@ -71,7 +71,6 @@ namespace explorer.Models
                 }
 
             }
-            //Debug.WriteLine(currentDirName);
         }
 
         public void Up()
@@ -85,7 +84,12 @@ namespace explorer.Models
             }
             var path = CurrentDirName.Split('\\');
             currentDirName = string.Join('\\', path, 0, path.Length - 2) + '\\';
-           // Debug.WriteLine(currentDirName);
+            Fill();
+        }
+
+        public void Home()
+        {
+            CurrentDirName = "";
             Fill();
         }
 
