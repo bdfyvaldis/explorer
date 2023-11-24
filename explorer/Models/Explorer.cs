@@ -22,11 +22,13 @@ namespace explorer.Models
             { 
                 if (Path.Exists(value) || value == "")
                 {
+                    SetAndRaise(ref currentDirName, value);
                     currentDirName = value;
                     if (entries != null)
                     {
                         Fill();
                     }
+                    
                 }
             }
         }
@@ -79,18 +81,15 @@ namespace explorer.Models
             if (CurrentDirName.Count(ch => ch == '\\') == 1)
             {
                 CurrentDirName = "";
-                Fill();
                 return; 
             }
             var path = CurrentDirName.Split('\\');
-            currentDirName = string.Join('\\', path, 0, path.Length - 2) + '\\';
-            Fill();
+            CurrentDirName = string.Join('\\', path, 0, path.Length - 2) + '\\';
         }
 
         public void Home()
         {
             CurrentDirName = "";
-            Fill();
         }
 
         public void ChangeDirectory(string dirname)
@@ -108,7 +107,7 @@ namespace explorer.Models
         public Explorer()
         {
             var drives = DriveInfo.GetDrives();
-            CurrentDirName = drives[0].Name;
+            currentDirName = drives[0].Name;
             Entries = new ObservableCollection<ExplorerEntry>();
             Fill();
 
