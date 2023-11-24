@@ -39,6 +39,7 @@
 						<Grid.ContextMenu>
 							<ContextMenu>
 								<MenuItem Header="Open" Command="{Binding $parent[Window].DataContext.OpenCommand}" CommandParameter="{Binding}"/>
+								<MenuItem Header="Delete" Click="DeleteClick"/>
 								<MenuItem Header="Properties" Click="PropertiesClick"/>
 							</ContextMenu>
 						</Grid.ContextMenu>

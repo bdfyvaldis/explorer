@@ -40,9 +40,27 @@ public partial class MainWindow : Window
         {
             (new PermissionDeniedDialog()).Show(this);
         }
+    }
 
-        
+    private async void DeleteClick(object sender, RoutedEventArgs e)
+    {
+        var lb = this.GetVisualDescendants().OfType<ListBox>().First() as ListBox;
+        var entry = (lb.SelectedItem as ExplorerEntry);
+        var path = (this.DataContext as MainViewModel).Explorer.CurrentDirName + entry.Name;
 
+        DialogResult result = await (new DeleteDialog(path).ShowDialog<DialogResult>(this));
+
+        try
+        {
+            if (result == DialogResult.Yes)
+            {
+                (DataContext as MainViewModel).Explorer.Delete(entry);
+            }
+        }
+        catch (System.UnauthorizedAccessException)
+        {
+           await (new PermissionDeniedDialog()).ShowDialog(this);
+        }
     }
 
 }

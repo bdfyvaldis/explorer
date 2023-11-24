@@ -9,7 +9,7 @@ namespace explorer.Views
 {
     public partial class PropertiesWindow : Window
     {
-        public PropertiesWindow()
+        private PropertiesWindow()
         {
             InitializeComponent();
         }

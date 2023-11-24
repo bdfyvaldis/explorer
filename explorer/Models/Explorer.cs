@@ -108,6 +108,19 @@ namespace explorer.Models
             }
         }
 
+        public void Delete(ExplorerEntry entry)
+        {
+            string path = CurrentDirName + entry.Name;
+            if (entry.EntryType == EntryType.File)
+            {
+                File.Delete(path);
+            }
+            else if (entry.EntryType == EntryType.Folder)
+            {
+                Directory.Delete(path);
+            }
+            Fill();
+        }
         public Explorer()
         {
             var drives = DriveInfo.GetDrives();
