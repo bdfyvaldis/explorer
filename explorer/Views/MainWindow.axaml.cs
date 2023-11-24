@@ -18,7 +18,7 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
-    
+
     private void RectDoubleTapped(object? sender, TappedEventArgs e)
     {
         var rect = sender as Rectangle;
@@ -31,9 +31,18 @@ public partial class MainWindow : Window
     {
         var lb = this.GetVisualDescendants().OfType<ListBox>().First() as ListBox;
         var entryname = (lb.SelectedItem as ExplorerEntry).Name;
-            //Debug.WriteLine(entryname);
 
-        (new PropertiesWindow((this.DataContext as MainViewModel).Explorer.CurrentDirName + entryname)).Show();
+        try
+        {
+            (new PropertiesWindow((this.DataContext as MainViewModel).Explorer.CurrentDirName + entryname)).Show(this);
+        }
+        catch (System.UnauthorizedAccessException)
+        {
+            (new PermissionDeniedDialog()).Show(this);
+        }
+
+        
+
     }
 
 }

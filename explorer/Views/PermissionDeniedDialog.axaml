@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="140"
+		Width="200" Height="140"
+		CanResize="False"
+        x:Class="explorer.Views.PermissionDeniedDialog"
+        Title="Permission Denied!">
+	<StackPanel>
+		<TextBlock Padding="30" VerticalAlignment="Center"
+				   HorizontalAlignment="Center"> Permission Denied!</TextBlock>
+		<Button HorizontalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				Width="80" Click="ButtonOKClick"> OK </Button>
+	</StackPanel>
+</Window>
